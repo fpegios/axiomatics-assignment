@@ -1,13 +1,26 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { xmlToJson } from "../../../libs/utils";
+import { useNavigate } from "react-router-dom";
 
-function useHandlers () { 
-    const handleFileOnLoad = function (event: any) {
+interface UseHandlersProps {
+    xmlData: JSON | null,
+    setXmlData: (data: JSON | null) => void
+}
+
+function useHandlers ({
+    xmlData,
+    setXmlData
+}: UseHandlersProps) { 
+    const navigate = useNavigate();
+
+    const handleFileOnLoad = useCallback((event: any) => {
         const xmlString = event.target.result
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
-        console.log(xmlToJson(xmlDoc))
-    }
+        
+        setXmlData(xmlToJson(xmlDoc) as JSON)
+        navigate('/tree')
+    }, [])
 
     const handleFileInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return

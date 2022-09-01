@@ -3,7 +3,7 @@
  * Modified version from here: http://davidwalsh.name/convert-xml-json
  * @param {string} xml XML DOM tree
  */
- export function xmlToJson(xml: any) {
+ export function xmlToJson(xml: any): Object {
     // Create the return object
     let obj: any = {};
   
