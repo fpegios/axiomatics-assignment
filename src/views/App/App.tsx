@@ -18,9 +18,7 @@ function App() {
       <Route path="/tree" element={<Tree />}>
         <Route index element={<Tree />} />
       </Route>
-      
-      <Route path="*" element={<Navigate to="/" replace />}>
-      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>
  )
