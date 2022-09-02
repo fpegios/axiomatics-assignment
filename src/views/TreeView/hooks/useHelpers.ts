@@ -34,9 +34,10 @@ function useHelpers() {
         }
       }
       
+      const attributes = typeof value === 'object' && !Array.isArray(value) ? value['@attributes'] : undefined
       return {
         name: key,
-        attributes: value['@attributes'],
+        attributes,
         hidden: key === '@attributes' || key === '#text',
         children: getTreeDataComputed(value)
       }
