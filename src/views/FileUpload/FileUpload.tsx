@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Grid, Typography, Button } from '@mui/material';
 import useHandlers from './hooks/useHandlers';
-import { XmlDataContext } from '../App/App';
 
-function Home () {  
-  const { xmlData, setXmlData } = useContext(XmlDataContext);
-  const { handleFileInputChange } = useHandlers({xmlData, setXmlData})
+interface FileUploadProps {
+  onChange: (data: JSON) => void
+}
+
+function FileUpload ({ onChange }:FileUploadProps ) {  
+  const { handleFileInputChange } = useHandlers({onChange})
 
   return (
     <Grid container justifyContent="center" alignItems="center" flexDirection="column" style={{height: '100%'}}>
@@ -22,4 +24,4 @@ function Home () {
   )
 }
 
-export default Home;
+export default React.memo(FileUpload);

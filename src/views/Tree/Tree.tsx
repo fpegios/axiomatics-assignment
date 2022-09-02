@@ -1,20 +1,15 @@
-import React, {useContext, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
-import { XmlDataContext } from '../App/App';
+import React, {useEffect} from 'react';
 
-function Tree () {
-  const navigate = useNavigate();
-  const { xmlData } = useContext(XmlDataContext);
+interface TreeProps {
+  data: JSON
+}
 
+function Tree ({data}: TreeProps) {
   useEffect(() => {
-    if (!xmlData) {
-      navigate('/')
-    }
-  }, [xmlData])
-
-  if (!xmlData) return <></>
+    console.log(data)
+  }, [data])
 
   return <h1>Tree</h1>
 }
 
-export default Tree;
+export default React.memo(Tree);
