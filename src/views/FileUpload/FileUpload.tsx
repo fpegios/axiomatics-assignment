@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Grid, Typography, Button } from '@mui/material';
 import useHandlers from './hooks/useHandlers';
+import { FileUploadProps } from './interface';
 
-interface FileUploadProps {
-  onChange: (data: JSON) => void
-}
-
-function FileUpload ({ onChange }:FileUploadProps ) {  
+function FileUpload ({ onChange }: FileUploadProps ) {  
   const { handleFileInputChange } = useHandlers({onChange})
 
   return (

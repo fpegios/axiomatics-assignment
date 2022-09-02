@@ -1,16 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState, useMemo } from 'react';
 import FileUpload from '../FileUpload';
-import Tree from '../Tree';
+import TreeView from '../TreeView';
 import useHandlers from './hooks/useHandlers';
+import Navbar from '../../components/Navbar';
 
 function App() {
   const [treeData, setTreeData] = useState<JSON | null>(null);
-  const { handleFileUploadChange } = useHandlers({setTreeData})
+  const { handleFileUploadChange, handleBackClick } = useHandlers({setTreeData})
+
+  const navbarTitle = useMemo(() => !treeData ? 'File upload' : 'Tree view', [treeData])
 
   return (
     <>
+      <Navbar title={navbarTitle} showBackButton={!!treeData} onBackClick={handleBackClick} />
+
       {!treeData && <FileUpload onChange={handleFileUploadChange} />}
-      {treeData && <Tree data={treeData} />}
+      {treeData && <TreeView data={treeData} />}
     </>
   )
 }

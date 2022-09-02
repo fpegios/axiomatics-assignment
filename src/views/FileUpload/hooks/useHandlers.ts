@@ -9,7 +9,7 @@ function useHandlers ({onChange}: UseHandlersProps) {
     const handleFileOnLoad = useCallback((event: any) => {
         const xmlString = event.target.result
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+        const xmlDoc = parser.parseFromString(xmlString.trim(), 'text/xml');
 
         onChange(xmlToJson(xmlDoc) as JSON)
     }, [])

@@ -8,9 +8,13 @@ interface UseHandlersProps {
 function useHandlers ({setTreeData}: UseHandlersProps) { 
     const handleFileUploadChange = useCallback((data: JSON) => {
         setTreeData(data)
+    }, []) 
+
+    const handleBackClick = useCallback(() => {
+        setTreeData(null)
     }, [])
 
-    return { handleFileUploadChange }
+    return { handleFileUploadChange, handleBackClick }
 }
 
 export default useHandlers
