@@ -1,5 +1,5 @@
 interface FileUploadProps {
-    onChange: (data: JSON) => void
+  onChange: (data: JSON) => void
 }
 
-export type {FileUploadProps}
+export type { FileUploadProps }
