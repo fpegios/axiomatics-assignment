@@ -1,9 +1,9 @@
-import { RawNodeDatumFormatted } from "../interfaces"
+import { RawNodeDatumFormatted, TreeData } from "../interfaces"
 
 function useHelpers() {
-  const getTreeDataComputed = (d: any): RawNodeDatumFormatted[] => {
-    if (Array.isArray(d)) {
-      return d.map((value, i) => {
+  const getTreeDataComputed = (data: TreeData | TreeData[] | string[]): RawNodeDatumFormatted[] => {
+    if (Array.isArray(data)) {
+      return data.map((value, i) => {
         if (typeof value === 'string') {
           return {
             name: value,
@@ -18,23 +18,24 @@ function useHelpers() {
       }).filter(v => !v.hidden)
     }
 
-    return Object.keys(d).map((key) => {
-      const value = d[key as keyof typeof d]
+    return Object.keys(data).map((key) => {
+      const value = data[key as keyof typeof data]
 
       if (typeof value === 'string') {
         return {
           name: key,
           hidden: value === '\n '|| key === '@attributes' || key === '#text',
-          attributes: d['@attributes'],
-          children: [
+          attributes: data['@attributes'],
+            children: [
             {
               name: value
             }
           ]
         }
       }
-      
+
       const attributes = typeof value === 'object' && !Array.isArray(value) ? value['@attributes'] : undefined
+
       return {
         name: key,
         attributes,
@@ -44,6 +45,6 @@ function useHelpers() {
     }).filter(v => !v.hidden)
   }
 
-  return {getTreeDataComputed}
+  return { getTreeDataComputed }
 }
 export default useHelpers

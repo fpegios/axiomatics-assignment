@@ -2,15 +2,15 @@ import React, {useMemo} from 'react';
 import Tree from 'react-d3-tree';
 import { RawNodeDatum } from 'react-d3-tree/lib/types/common';
 import useHelpers from './hooks/useHelpers';
-import { TreeViewProps } from './interfaces';
+import { TreeData, TreeViewProps } from './interfaces';
 import './TreeView.css'
 
 function TreeView ({data}: TreeViewProps) {
   const {getTreeDataComputed} = useHelpers()
 
   const dataComputed = useMemo((): RawNodeDatum => {
-    console.log(data)
-    return getTreeDataComputed(data)[0]
+    console.log('XML data in JSON format: ', data)
+    return getTreeDataComputed(data as unknown as TreeData)[0]
   }, [data, getTreeDataComputed])
 
   return (

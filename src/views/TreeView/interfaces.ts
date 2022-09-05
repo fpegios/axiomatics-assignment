@@ -8,4 +8,15 @@ interface TreeViewProps {
     data: JSON
 }
 
-export type {TreeViewProps, RawNodeDatumFormatted}
+type TreeDataValue = string | string[] | TreeData | TreeData[] 
+
+type AttributesType = Record<string, string>
+
+type TreeData = {
+  '@attributes'?: AttributesType
+} & {
+  [key: string]: TreeDataValue
+}
+
+
+export type {TreeViewProps, RawNodeDatumFormatted, TreeDataValue, AttributesType, TreeData}
