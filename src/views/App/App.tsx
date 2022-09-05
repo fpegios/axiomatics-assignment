@@ -3,9 +3,10 @@ import FileUpload from '../FileUpload';
 import TreeView from '../TreeView';
 import useHandlers from './hooks/useHandlers';
 import Navbar from '../../components/Navbar';
+import useLocalData from './hooks/useLocalData';
 
 function App() {
-  const [treeData, setTreeData] = useState<JSON | null>(null);
+  const {treeData, setTreeData} = useLocalData()
   const { handleFileUploadChange, handleBackClick } = useHandlers({setTreeData})
 
   const navbarTitle = useMemo(() => !treeData ? 'File upload' : 'Tree view', [treeData])
